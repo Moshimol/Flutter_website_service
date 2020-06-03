@@ -1,0 +1,5 @@
+name: flutter_website_service
+description: Flutter企业
+
+dependencies :
+     http_service : ^0.9.8
