@@ -1,25 +1,42 @@
 import 'dart:convert';
+import 'data.dart';
 
 import 'dart:io';
 
 main() async {
-  var responService = await HttpServer.bind('192.168.2.156', 8080);
+  var responService = await HttpServer.bind('192.168.1.7', 8080);
   
   
   await for (HttpRequest request in responService) {
     handleMessage(request);
   }
-
 }
 
 
 void handleMessage(HttpRequest request) {
   try {
     if (request.method == 'GET') {
-
+      hadleGet(request);
     } else {
-
+      hadlePOST(request);
     }
   } catch (e) {
   }
+}
+
+void hadleGet(HttpRequest request) {
+  var action = request.uri.queryParameters['action'];
+
+  if (action == 'get_products') {
+
+    request.response..statusCode=HttpStatus.ok..write(json.encode(prodct))..close();
+    
+  } else if (action == 'get_news') {
+    request.response..statusCode=HttpStatus.ok..write("get_news")..close();
+  }
+
+}
+
+void hadlePOST(HttpRequest request) {
+  
 }
