@@ -28,11 +28,13 @@ void hadleGet(HttpRequest request) {
   var action = request.uri.queryParameters['action'];
 
   if (action == 'get_products') {
+    var page = request.uri.queryParameters['page'];
 
-    request.response..statusCode=HttpStatus.ok..write(json.encode(prodct))..close();
-    
+    print(page);
+
+    request.response..statusCode = HttpStatus.ok..write(json.encode(products))..close();
   } else if (action == 'get_news') {
-    request.response..statusCode=HttpStatus.ok..write("get_news")..close();
+    request.response..statusCode = HttpStatus.ok..write(json.encode(news))..close();
   }
 
 }
